@@ -111,12 +111,12 @@ img {vertical-align: middle;}
 
 
 
-<form action="/action_page.php">
+<form>
   <label for="fname">Nome:</label><br>
-  <input type="text" id="fname" name="fname" value="John"><br>
+  <input type="text" id="fname" name="fname" value=""><br>
   <label for="lname">Cadastre seu e-mail:</label><br>
-  <input type="email" id="lname" name="lname" value="Doe"><br><br>
-  <button id="bt-enviar" onclick="salvarForm ()"> Enviar</button>
+  <input type="email" id="lname" name="lname" value=""><br><br>
+  <button id="bt-enviar" onclick="salvarForm()"> Enviar</button>
 </form> 
 
 
@@ -154,19 +154,24 @@ function salvarForm () {
 
 if (typeof(Storage) !== "undefined") {
 
-if (localStorage.clickcount) {
-  localStorage.clickcount = Number(localStorage.clickcount) + 1;
+if (localStorage.contagem) {
+  localStorage.contagem = Number(localStorage.contagem) + 1;
  
 } else {
-  localStorage.clickcount = 1;
+  localStorage.contagem = 1;
 }
 
 
-cad= document.getElementById('lname').value+ ';' + document.getElementById ('fname');
-localStorage.setItem ("cad_"+ localStorage.clickcount, cad);
-} else {
-}
-} 
+nome= document.getElementById('lname').value;
+email=document.getElementById ('fname').value;
+
+dados = {nome, email}
+
+string = JSON.stringify(dados)
+localStorage.setItem ("Dados", string);
+
+
+}}
 
 
 </script>
